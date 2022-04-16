@@ -105,7 +105,7 @@ nav{
 
 .container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 13px 5%;
 }
 
@@ -200,7 +200,8 @@ nav{
     border-radius: 6px;
     padding: 20px;
     color: #31364C;
-    margin: 20px 0;
+    margin: 20px 20px;
+
 }
 
 .user-profile{
@@ -227,14 +228,14 @@ nav{
 
 .post-text{
     color: #31364C;
-    margin: 15px 0;
+    margin: 15px 15px;
     font-size: 15px;
 }
 
 .post-row{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: left;
     position: relative;
     width: 100%;
 }
@@ -376,7 +377,7 @@ nav{
 }
 
 /* media query for homepage */
-@media(max-width: 900px){
+/* @media(max-width: 900px){
     .right-sidebar{
         display: none;
     }
@@ -406,4 +407,4 @@ nav{
     .main-content{
         flex-basis: 100%;
     }
-}
+} */

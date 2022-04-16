@@ -25,6 +25,7 @@ urlpatterns = [
     path("home_feed",views.home_feed),
     path("signup",views.signup),
     path("feed",views.feed),
+    path("comment",views.comment),
     path("profile",views.profile),
     path("notification",views.notification),
     path("settings",views.settings),

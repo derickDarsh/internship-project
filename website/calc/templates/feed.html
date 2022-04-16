@@ -51,7 +51,7 @@
           <i class="bi bi-search"></i>
           <input type="text" placeholder="Search" />
         </div>
-        <div class="nav-user-icon online" onclick="settingsMenuToggle()">
+        <div class="nav-user-icon online" onclick="settingsMenuToggle();">
           <img src="{% static 'user.png' %}" />
         </div>
       </div>
@@ -96,7 +96,7 @@
     <div class="container">
 
 <!-- left-side  -->
-      
+<!--       
       <div class="left-sidebar">
         <div class="imp-links">
           <a href="#"><i class="bi bi-pc-display"></i>Computer Science</a>
@@ -111,7 +111,7 @@
 
           <a href="#">See More</a>
         </div>
-      </div>
+      </div> -->
 
 <!-- main-content  -->
 {% for x,y in result %}
@@ -122,49 +122,55 @@
             <h3><i class="bi bi-person-circle"></i></h3>
 
             <div>
-              <p>{{x}}</p>
+              <p>{{x}}</p>     <!--Username-->
               <!-- <span>The date when the question was posted</span> -->
             </div>
           </div>
 
-          <p class="post-text">{{y}}</p> 
+          <p class="post-text" id="question">{{y}}</p>     <!--Question-->
           <div class="post-row">
             <div class="activity-icons">
-              <button id="likebtn" onclick="likebtn()">
+              <button id="likebtn" onclick="likebtn();">
                 <i class="far fa-thumbs-up icon_like"></i><p id="votes">0</p>
               </button>
 
-              <button id="dislikebtn" onclick="dislikebtn()">
+              <button id="dislikebtn" onclick="dislikebtn();">
                 <i class="far fa-thumbs-down icon_dislike"></i><p id="votes_1">0</p>
               </button>
               <div class="comment-box">
-                <form action="comment">
+                <form action="comment" method="post">
+                  {% csrf_token %}
                   <input type="text" name="answer" id="input" placeholder="Leave a comment" />
+                  
+  
+                  {% for i,j in answer %}
+                    <h4>{{i}}</h4>
+                    <h4>{{j}}</h4>
+                  {% endfor %}
+                  <button type="submit" name="button" value="submit" id="comment" onclick="comment_fun()">
+                    <i class="bi bi-arrow-right-circle"></i>
+                  </button>
                 </form>
-                <button type="submit" name="button" value="submit" id="comment">
-                  <i class="bi bi-arrow-right-circle"></i>
-                </button>
-
-                <button type="button" name="button" id="cancel">
-                  <i class="bi bi-x-circle"></i>
-                </button>
-
-                <div class="box-container">
-                  <div class="box">
+                  <button type="button" name="button" id="cancel">
+                    <i class="bi bi-x-circle"></i>
+                  </button>
+                
+                <!-- <div class="box-container">
+                    <div class="box">
                     <button type="button" name="button" id="delete">
                       <i class="bi bi-trash3"></i>
                     </button>
-                  </div>
-                </div>
+                  </div> 
+                </div> -->
               </div>
-            </div>
-          </div>
+            <!-- </div> -->
+          </div> 
         </div>
-      </div><br>
+      </div>
  
 {% endfor %}
 <!-- right-side -->
-
+<!-- 
       <div class="right-sidebar">
         <div class="side-bar-title">
           <h4>Message Box</h4>
@@ -208,7 +214,7 @@
 
         <a href="#">See All</a>
       </div>
-    </div>
+    </div> -->
 
     <script src="{% static 'script.js' %}" charset="utf-8"></script>
   </body>
