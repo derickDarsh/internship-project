@@ -36,6 +36,7 @@ def login(request):
 
 
 def home_feed(request):
+    global uname
     conn= mysql.connector.connect(host='localhost',user='root',password='2307@darsh',database='project',autocommit=True)
     cursor1=conn.cursor()
 
@@ -60,6 +61,7 @@ def home_feed(request):
             answers_data=cursor1.fetchall()
 
             str(answers_data)
+            answers_data.reverse()
 
             return render(request,'feed.html',{'result':data,'answer':answers_data})
 
@@ -68,7 +70,6 @@ def feed(request):
     if request.method=="POST":
         global uname
         uname=request.POST['username']
-        global ps
         ps=request.POST['userpassword']
 
         conn= mysql.connector.connect(host='localhost',user='root',password='2307@darsh',database='project',autocommit=True)
@@ -85,12 +86,8 @@ def feed(request):
             data=cursor1.fetchall()
 
             str(data)
-            # print(data)
             # list_users= [li[0] for li in data]
-            # print(list_users)
             # list_questions = [lis[1] for lis in data]
-            # list_users.reverse()
-            # list_questions.reverse()
             data.reverse()
 
             cursor1.execute("select username,answers from project.answers")
@@ -105,21 +102,13 @@ def feed(request):
             return render(request,"login.html")
 
 def comment(request):
-
-    # @csrf_exempt
-    output=request.get_json()
-    print(request)
-    print(type(output))
-    var=json.loads(request.body)
-    print(var)
-    print(type(var))
-
     if request.method=="POST":
         conn= mysql.connector.connect(host='localhost',user='root',password='2307@darsh',database='project',autocommit=True)
         cursor1=conn.cursor()
 
         cursor1.execute("select username,questions from project.questions")
         data=cursor1.fetchall()
+        data.reverse()
 
         answer=request.POST['answer']
         if answer is None:
@@ -130,18 +119,13 @@ def comment(request):
             # u_id=int(''.join(map(str,id)))
 
             global uname
-
             cursor1.execute("insert into project.answers(username,answers) VALUES (%s,%s)",(uname,answer))
 
             cursor1.execute("select username,answers from project.answers")
             answers_data=cursor1.fetchall()
 
             str(answers_data)
-            print(answers_data)
             answers_data.reverse()
-
-            # list_uers= [li[0] for li in answers_data]
-            # list_questions=[lis[1] for lis in answers_data]
 
             return render(request,'feed.html',{'result':data,'answer':answers_data})
 

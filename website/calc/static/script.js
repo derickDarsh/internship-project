@@ -17,16 +17,8 @@ function settingsMenuToggle(){
 }
 
 
-function comment_fun(){
-    const question=document.getElementById("question").value;
-    console.log(question)
-    // const dict_values={question}
-    // const s=JSON.stringify(dict_values);
-    // console.log(s);
-    // $.ajax({
-    //     URL:'/comment',
-    //     type:'POST',
-    //     contentType:'application/json',
-    //     data:JSON.stringify(s)
-    // });
-}
+// function comment_fun(){
+//     var data = document.getElementById("ques").value;
+//     // console.log(data);
+//     alert(data);
+// }
