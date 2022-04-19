@@ -124,6 +124,10 @@ button[type="submit"]:hover{
     text-decoration: underline;
 }
 
+.question{
+    resize: none;
+}
+
 @media(max-width: 900px){
     .center{
         left: 50%;
